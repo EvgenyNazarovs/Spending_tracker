@@ -6,7 +6,7 @@ class Tag
   attr_accessor :type
 
   def initialize(options)
-    @id = options['id'] if options['id']
+    @id = options['id'].to_i if options['id']
     @type = options['type']
   end
 
