@@ -34,13 +34,28 @@ class User
     SqlRunner.run(sql)
   end
 
-  def get_monthly_limit
+  def display_monthly_limit
     sql = "SELECT * FROM users
            WHERE id = $1"
     values = [@id]
     result = SqlRunner.run(sql, values)[0]['monthly_limit'].to_i
     return result
   end
+
+  def transactions
+    sql = "SELECT * FROM transactions
+           WHERE user_id = $1"
+    values = [@id]
+    transactions = SqlRunner.run(sql, values)
+    return Transaction.map_items(transactions)
+  end
+
+  def total_spent
+    transactions = transactions()
+    return transactions.reduce(0) {|sum, transaction| sum + transaction.amount}
+  end
+
+
 
 
 
