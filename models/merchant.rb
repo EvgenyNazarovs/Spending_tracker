@@ -1,6 +1,6 @@
 require_relative('../db/sql_runner')
 
-class Merhcant
+class Merchant
 
   attr_accessor :name
   attr_reader :id
@@ -20,7 +20,7 @@ class Merhcant
 
   def update
     sql = "UPDATE merchants
-           SET (name) = ($1)
+           SET name = $1
            WHERE id = $2"
     values = [@name, @id]
     SqlRunner.run(sql, values)
@@ -40,7 +40,8 @@ class Merhcant
   def delete
     sql = "DELETE FROM merchants
            WHERE id = $1"
-    SqlRunner.run(sql)
+    values = [@id]
+    SqlRunner.run(sql, values)
   end
 
   def self.map_items(data)

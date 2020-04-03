@@ -2,12 +2,12 @@ require_relative('../db/sql_runner')
 
 class Transaction
 
-  attr_accessor :amount, :date_time, :tag :merchant_id, :user_id
+  attr_accessor :amount, :date_time, :tag, :merchant_id, :user_id
   attr_reader :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @amount  = options['amount']
+    @amount  = options['amount'].to_i
     @date_time = options['date_time']
     @tag = options['tag']
     @user_id = options['user_id']
@@ -24,14 +24,14 @@ class Transaction
 
   def update
     sql = "UPDATE transactions
-           SET (amount, date_time, tag user_id, merchant_id) = ($1, $2, $3, $4, $5)
+           SET (amount, date_time, tag, user_id, merchant_id) = ($1, $2, $3, $4, $5)
            WHERE id = $6"
     values = [@amount, @date_time, @tag, @user_id, @merchant_id, @id]
     SqlRunner.run(sql, values)
   end
 
   def self.all
-    sql = "SELECT & FROM transactions"
+    sql = "SELECT * FROM transactions"
     transactions = SqlRunner.run(sql)
     return Transaction.map_items(transactions)
   end
@@ -44,7 +44,8 @@ class Transaction
   def delete
     sql = "DELETE FROM transactions
            WHERE id = $1"
-    SqlRunner.run(sql)
+    values = [@id]
+    SqlRunner.run(sql, values)
   end
 
   def self.map_items(data)

@@ -12,7 +12,7 @@ CREATE TABLE users (
   first_name VARCHAR(255),
   last_name VARCHAR(255),
   monthly_limit INT
-)
+);
 
 CREATE TABLE transactions (
   id SERIAL,
@@ -20,5 +20,5 @@ CREATE TABLE transactions (
   date_time TIMESTAMP,
   tag VARCHAR(255),
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
-  merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE,
+  merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
 );

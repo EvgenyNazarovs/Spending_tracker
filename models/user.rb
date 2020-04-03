@@ -22,8 +22,7 @@ class User
 
   def update
     sql = "UPDATE users
-           SET (first_name, last_name, monthly_limit)
-           VALUES ($1, $2, $3)
+           SET (first_name, last_name, monthly_limit) = ($1, $2, $3)
            WHERE id = $4"
     values = [@first_name, @last_name, @monthly_limit, @id]
     SqlRunner.run(sql, values)
@@ -34,7 +33,7 @@ class User
     SqlRunner.run(sql)
   end
 
-  def display_monthly_limit
+  def get_monthly_limit
     sql = "SELECT * FROM users
            WHERE id = $1"
     values = [@id]
@@ -52,11 +51,13 @@ class User
 
   def total_spent
     transactions = transactions()
-    return transactions.reduce(0) {|sum, transaction| sum + transaction.amount}
+    return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
   end
 
-
-
-
+  def remaining_allowance
+    total_spent = total_spent()
+    monthly_limit = monthly_limit()
+    return monthly_limit - total_spent
+  end
 
 end
