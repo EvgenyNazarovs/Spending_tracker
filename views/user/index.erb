@@ -1,0 +1,20 @@
+<h1>My Stats</h1>
+
+<h2>Update my monthly limit:</h2>
+
+<form action="/user/limit" method="POST"
+
+<p><label for="name">Full Name:</label>
+  <select id="name" name="id"
+  <% for user in @users %>
+   <option value="<%= user.id %>">
+     <%= user.full_name %></option>
+  <% end %>
+</select>
+
+<p><label for="monthly_limit">Set monthly limit: £</label>
+  <input id="mothly-limit" type:="number" name="monthly_limit" required>
+</p>
+
+<input type="submit" values="Update!">
+</form>
