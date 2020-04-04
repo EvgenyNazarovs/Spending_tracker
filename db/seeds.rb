@@ -23,32 +23,32 @@ merchant2.save
 merchant3.save
 
 transaction1 = Transaction.new({'amount' => 10.0,
-                               'date_time' => '2020-02-13 15:00:00',
+                               'a_date' => '2020-02-13',
                                'tag' => 'fun',
                                'user_id' => user1.id,
                                'merchant_id' => merchant2.id})
 transaction2 = Transaction.new({'amount' => 20.0,
-                               'date_time' => '2020-01-01 15:00:00',
+                               'a_date' => '2020-01-01',
                                'tag' => 'fun',
                                'user_id' => user1.id,
                                'merchant_id' => merchant2.id})
 transaction3 = Transaction.new({'amount' => 35.0,
-                               'date_time' => '2020-02-13 15:00:00',
+                               'a_date' => '2020-02-13',
                                'tag' => 'food',
                                'user_id' => user1.id,
                                'merchant_id' => merchant1.id})
 transaction4 = Transaction.new({'amount' => 47.0,
-                               'date_time' => '2020-01-23 15:00:00',
+                               'a_date' => '2020-01-23',
                                'tag' => 'food',
                                'user_id' => user1.id,
                                'merchant_id' => merchant3.id})
 transaction5 = Transaction.new({'amount' => 7.0,
-                               'date_time' => '2020-03-13 15:00:00',
+                               'a_date' => '2020-03-13',
                                'tag' => 'food',
                                'user_id' => user1.id,
                                'merchant_id' => merchant3.id})
 transaction6 = Transaction.new({'amount' => 200.0,
-                               'date_time' => '2020-02-13 12:33:00',
+                               'a_date' => '2020-02-13',
                                'tag' => 'electronics',
                                'user_id' => user1.id,
                                'merchant_id' => merchant1.id})

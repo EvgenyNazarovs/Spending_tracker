@@ -17,7 +17,7 @@ CREATE TABLE users (
 CREATE TABLE transactions (
   id SERIAL,
   amount INT,
-  date_time TIMESTAMP,
+  a_date DATE NOT NULL DEFAULT CURRENT_DATE,
   tag VARCHAR(255),
   user_id INT REFERENCES users(id) ON DELETE CASCADE,
   merchant_id INT REFERENCES merchants(id) ON DELETE CASCADE
