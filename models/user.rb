@@ -67,6 +67,11 @@ class User
     return Transaction.map_items(transactions)
   end
 
+  def transactions_by_month
+    transactions = transactions()
+    return transactions.sort_by{|item| item.a_date.to_i}
+  end
+
   def total_spent
     transactions = transactions()
     return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}

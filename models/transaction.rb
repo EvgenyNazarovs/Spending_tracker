@@ -2,31 +2,31 @@ require_relative('../db/sql_runner')
 
 class Transaction
 
-  attr_accessor :amount, :date_time, :tag, :merchant_id, :user_id
+  attr_accessor :amount, :a_date, :tag, :merchant_id, :user_id
   attr_reader :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @amount  = options['amount'].to_i
-    @date_time = options['date_time']
+    @a_date = options['a_date']
     @tag = options['tag']
     @user_id = options['user_id']
     @merchant_id = options['merchant_id']
   end
 
   def save
-    sql = "INSERT INTO transactions (amount, date_time, tag, user_id, merchant_id)
+    sql = "INSERT INTO transactions (amount, a_date, tag, user_id, merchant_id)
            VALUES ($1, $2, $3, $4, $5)
            RETURNING *"
-    values = [@amount, @date_time, @tag, @user_id, @merchant_id]
+    values = [@amount, @a_date, @tag, @user_id, @merchant_id]
     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
   def update
     sql = "UPDATE transactions
-           SET (amount, date_time, tag, user_id, merchant_id) = ($1, $2, $3, $4, $5)
+           SET (amount, a_date, tag, user_id, merchant_id) = ($1, $2, $3, $4, $5)
            WHERE id = $6"
-    values = [@amount, @date_time, @tag, @user_id, @merchant_id, @id]
+    values = [@amount, @a_date, @tag, @user_id, @merchant_id, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -52,6 +52,5 @@ class Transaction
     result = data.map {|transaction| Transaction.new(transaction)}
     return result
   end
-
 
 end

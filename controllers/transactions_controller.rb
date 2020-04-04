@@ -22,9 +22,27 @@ get '/transactions/new' do
   erb(:"transactions/new")
 end
 
-#
 post '/transactions/added' do
   transaction = Transaction.new(params)
   transaction.save
   erb(:"transactions/added")
+end
+
+# VIEW TRANSACTIONS
+
+get '/transactions/all' do
+  @type = 'all'
+  @user = User.find_by_id(9)
+  @transactions = @user.transactions
+  erb(:"transactions/all")
+end
+
+get '/transactions/merchant' do
+  @type = 'merchant'
+  erb(:"transactions/all")
+end
+
+get '/transactions/date' do
+  @type = 'date' do
+  erb(:"transactions/date")
 end
