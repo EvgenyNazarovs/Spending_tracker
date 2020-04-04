@@ -33,12 +33,30 @@ class User
     SqlRunner.run(sql)
   end
 
+  def self.all
+    sql = "SELECT * FROM users"
+    results = SqlRunner.run(sql)
+    return results.map{|hash| User.new(hash)}
+  end
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM users
+           WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, values).first
+    return User.new(result)
+  end
+
   def get_monthly_limit
     sql = "SELECT * FROM users
            WHERE id = $1"
     values = [@id]
     result = SqlRunner.run(sql, values)[0]['monthly_limit'].to_i
     return result
+  end
+
+  def full_name
+    return "#{@first_name} #{@last_name}"
   end
 
   def transactions
