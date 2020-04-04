@@ -67,9 +67,14 @@ class User
     return Transaction.map_items(transactions)
   end
 
-  def transactions_by_month
+  def sort_by_month
     transactions = transactions()
-    return transactions.sort_by{|item| item.a_date.to_i}
+    return transactions.sort_by!{|x| Date.parse(x.a_date)}
+  end
+
+  def show_by_month(month)
+    transactions = transactions()
+    transactions.select{|x| x.a_date.mon == month}
   end
 
   def total_spent

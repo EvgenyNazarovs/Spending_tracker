@@ -31,18 +31,11 @@ end
 # VIEW TRANSACTIONS
 
 get '/transactions/all' do
-  @type = 'all'
-  @user = User.find_by_id(9)
-  @transactions = @user.transactions
+  @transactions = Transaction.sort_by_year_month
   erb(:"transactions/all")
 end
 
-get '/transactions/merchant' do
-  @type = 'merchant'
+post '/transactions/month' do
+  @transactions = Transaction.months
   erb(:"transactions/all")
-end
-
-get '/transactions/date' do
-  @type = 'date' do
-  erb(:"transactions/date")
 end

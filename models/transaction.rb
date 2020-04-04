@@ -53,4 +53,38 @@ class Transaction
     return result
   end
 
+  def self.find_by_user_id(user_id)
+    sql = "SELECT * FROM transactions
+           WHERE user_id = $1"
+    values = [user_id]
+    transactions = SqlRunner.run(sql)
+    return Transaction.map_items(transactions)
+  end
+
+  def self.convert_to_date
+    transactions = self.all
+    return transactions.each {|x| x.a_date = Date.parse(x.a_date)}
+  end
+
+  def self.sort_by_year_month
+    transactions = self.convert_to_date
+    return transactions.group_by {|x| [x.a_date.mon, x.a_date.year]}
+  end
+
+  def self.sort_by_yearmonth(year, month)
+    transactions = self.convert_to_date
+    return transactions.select {|x, v| x.a_date.mon == month && x.a_date.year == year}
+  end
+
+
+
+  def self.months
+    transactions = Transaction.sort_by_year_month
+    months = Date::MONTHNAMES
+    updated = transactions.each do |key, values|
+      key[0] = months[key[0]]
+    end
+    return updated
+  end
+
 end
