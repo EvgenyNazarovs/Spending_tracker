@@ -1,0 +1,8 @@
+<h4>Transactions for <%=@merchant.name%></h4>
+
+<% @transactions.each do |trx| %>
+
+<p>Amount: <%= trx.amount %></p>
+<p>Date: <%=trx.a_date%></p>
+<hr>
+<%end%>

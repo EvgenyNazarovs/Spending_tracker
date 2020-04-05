@@ -1,0 +1,12 @@
+<h2>View All Merchants:</h2>
+
+  <p><% @merchants.each do |merchant| %></p>
+
+  <p>Merchant: <%=merchant.name%></p>
+  <p><a href="/merchants/<%=merchant.id%>">See transactions</a>
+    <a href="/merchants/<%=merchant.id%>/edit">Edit this merchant</a>
+  </p>
+  <hr>
+  <%end%>
+
+  <p><a href="/merchants/add">Add a Merchant</a></p>

@@ -1,0 +1,9 @@
+<h4>Change name for Merchant: <%=@merchant.name%></h4>
+
+<form action="/merchants/success" method="POST">
+  <input type="hidden" name="id"
+  value="<%=@merchant.id%>">
+
+  <input type="text" name="name">
+  <input type="submit" values="Change Merchant">
+  </form>
