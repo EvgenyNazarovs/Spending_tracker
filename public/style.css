@@ -1,0 +1,40 @@
+.container {
+	height: 100%;
+	display: grid;
+	grid-gap: 3px;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 250px 250px;
+	color: #dee3e2;
+	font-size: 2em;
+	justify-content: center;
+}
+
+html, body {
+	background-color: #dee3e2;
+	margin: 0px;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+
+div {
+	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.transactions {
+	background-color: #3F88C5;
+}
+
+.merchants {
+	background-color: #87A7AA;
+}
+
+.tags {
+	background-color: #E5A385;
+}
+
+.stats {
+	background-color: #44BBA4;
+}

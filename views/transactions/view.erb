@@ -1,0 +1,15 @@
+<h2>View Transactions by Month:</h2>
+
+  <p><% @transactions.each do |key, values| %></p>
+    <h4><%= key[0] %>, <%= key[1] %></h4>
+      <br>
+      <%  values.each do |value| %>
+
+
+  <p>Amount: £<%=value.amount%></p>
+  <p>Date: <%=value.a_date%></p>
+  <p>Merchant: <%=value.merchant.name%></p>
+  <p>Tags: <%=value.show_tags_in_string%></p>
+  <hr>
+  <% end %>
+  <% end %>

@@ -15,30 +15,22 @@ end
 
 # TRANSACTION NEW
 
-get '/transactions/new' do
-  @users = User.all
-  @merchants = Merchant.all
-  @tags = Tag.all
-  erb(:"transactions/new")
-end
-
-post '/transactions/added' do
-  transaction = Transaction.new(params)
-  transaction.save
-  erb(:"transactions/added")
-end
+# get '/transactions/add' do
+#   @users = User.all
+#   @merchants = Merchant.all
+#   @tags = Tag.all
+#   erb(:"transactions/new")
+# end
+#
+# post '/transactions/added' do
+#   transaction = Transaction.new(params)
+#   transaction.save
+#   erb(:"transactions/added")
+# end
 
 # VIEW TRANSACTIONS
 
-get '/transactions/all' do
+get '/transactions/view' do
   @transactions = Transaction.months
-  erb(:"transactions/all")
-end
-
-get '/transactions/merchant' do
-
-end
-
-get '/transactions/tag' do
-
+  erb(:"transactions/view")
 end
