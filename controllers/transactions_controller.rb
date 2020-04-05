@@ -15,18 +15,16 @@ end
 
 # TRANSACTION NEW
 
-# get '/transactions/add' do
-#   @users = User.all
-#   @merchants = Merchant.all
-#   @tags = Tag.all
-#   erb(:"transactions/new")
-# end
-#
-# post '/transactions/added' do
-#   transaction = Transaction.new(params)
-#   transaction.save
-#   erb(:"transactions/added")
-# end
+get '/transactions/add' do
+  @merchants = Merchant.all
+  erb(:"transactions/new")
+end
+
+post '/transactions/added' do
+  transaction = Transaction.new(params)
+  transaction.save
+  erb(:"transactions/added")
+end
 
 # VIEW TRANSACTIONS
 

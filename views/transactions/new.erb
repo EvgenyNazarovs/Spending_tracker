@@ -4,31 +4,13 @@
 
 <p><input type="number" placeholder="Enter Amount" name="amount" required></p>
 
-<p><input type="datetime-local" name="date_time" required></p>
-
-<p><label>Add a tag:</label>
-  <select name="tag"
-    <% for tag in @tags %>
-      <option value="<%= tag %>">
-        <%= tag %></option>
-      <%end%>
-    </select>
-</p>
+<p><input type="date" name="a_date" required></p>
 
 <p><label>Pick a merchant:</label>
   <select name="merchant_id"
     <% for merchant in @merchants %>
       <option value="<%= merchant.id %>">
         <%= merchant.name %></option>
-      <%end%>
-    </select>
-</p>
-
-<p><label>Confirm your name:</label>
-  <select name="user_id"
-    <% for user in @users %>
-      <option value="<%= user.id %>">
-        <%= user.full_name %></option>
       <%end%>
     </select>
 </p>
