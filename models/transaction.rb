@@ -76,15 +76,17 @@ class Transaction
     return transactions.select {|x, v| x.a_date.mon == month && x.a_date.year == year}
   end
 
-
-
   def self.months
     transactions = Transaction.sort_by_year_month
     months = Date::MONTHNAMES
-    updated = transactions.each do |key, values|
+    return updated = transactions.each do |key, values|
       key[0] = months[key[0]]
     end
-    return updated
   end
+
+  # def self.by_merchant
+  #   transactions = self.transactions()
+  #   return transactions.group_by {|x| [x.]}
+  # end
 
 end

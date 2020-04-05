@@ -49,5 +49,12 @@ class Merchant
     return result
   end
 
+  def transactions
+    sql = "SELECT * FROM transactions
+           WHERE merchant_id = $1"
+    values = [@id]
+    results = SqlRunner.run(sql, values)
+    return Transaction.map_items(results)
+  end
 
 end

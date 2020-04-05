@@ -31,11 +31,14 @@ end
 # VIEW TRANSACTIONS
 
 get '/transactions/all' do
-  @transactions = Transaction.sort_by_year_month
+  @transactions = Transaction.months
   erb(:"transactions/all")
 end
 
-post '/transactions/month' do
-  @transactions = Transaction.months
-  erb(:"transactions/all")
+get '/transactions/merchant' do
+
+end
+
+get '/transactions/tag' do
+
 end

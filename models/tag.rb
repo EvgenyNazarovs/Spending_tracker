@@ -5,6 +5,6 @@ class Tag
   def self.all
     return ["food", "cinema", "gym", "rent", "mortgage",
             "eating out", "investment"]
-  end 
+  end
 
 end
