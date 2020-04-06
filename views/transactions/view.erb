@@ -2,7 +2,11 @@
   <li><a href="/merchants/view">View by Merchant</a></li>
   <li><a href="#">View by Tag</a></li>
   <li><a href="/transactions/new">Add a Transaction</a></li>
-<h3>TRANSACTIONS BY MONTH:</h3>
+<h3>ALL TRANSACTIONS:</h3>
+<form action="/transactions/monthly_view" method="POST">
+  <label>
+    or select individual month: </label>
+    <input type="month" name="month"><input type="submit" values="Find transactions!">
 
 <table class="transactions-table"
   <thead>
@@ -15,20 +19,19 @@
       </tr>
       <thead>
         <tbody>
-<% @transactions.each do |key, values| %>
-    <!-- <h4><%= key[0] %>, <%= key[1] %></h4> -->
-      <%  values.each do |value| %>
+<% @transactions.each do |value| %>
+
       <tr>
         <td>£<%=value.amount%></td>
       <td><%=value.a_date%></td>
       <td><%=value.merchant.name%></td>
       <td><%=value.show_tags_in_string%></td>
-      <td><%= key[0] %>, <%= key[1] %></td>
+      <td><%= value.a_date%></td>
       <td><a href="/transactions/<%=value.id%>/delete">Delete</a></td>
       <td><a href="/transactions/<%=value.id%>/edit">Edit</a></td>
       </tr>
 
   <% end %>
-  <% end %>
+
   </tbody>
   </table>

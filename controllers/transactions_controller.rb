@@ -30,7 +30,7 @@ end
 # VIEW TRANSACTIONS
 
 get '/transactions/view' do
-  @transactions = Transaction.months
+  @transactions = Transaction.sorted_by_month
   erb(:"transactions/view")
 end
 
@@ -38,6 +38,11 @@ post '/transactions/success' do
   transaction = Transaction.new(params)
   transaction.update
   redirect to("/transactions/view")
+end
+
+post '/transactions/monthly_view' do
+  @transactions = Transaction.find_by_month(params[:month])
+  erb(:"transactions/monthly_view")
 end
 
 get '/transactions/:id/delete' do

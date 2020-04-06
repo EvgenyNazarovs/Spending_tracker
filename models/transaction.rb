@@ -28,6 +28,26 @@ class Transaction
     SqlRunner.run(sql, values)
   end
 
+  def self.sorted_by_month
+    sql = "SELECT * FROM transactions
+           ORDER BY a_date DESC"
+    results = SqlRunner.run(sql)
+    return Transaction.map_items(results)
+  end
+
+  def self.find_by_month(yyyy_mm)
+    sql = "SELECT * FROM transactions
+           WHERE to_char(a_date, 'YYYY-MM') = $1"
+    values = [yyyy_mm]
+    transactions = SqlRunner.run(sql, values)
+    return Transaction.map_items(transactions)
+  end
+
+  def self.convert_to_date
+    transactions = self.sorted_by_month
+    return transactions.each {|x| x.a_date = Date.parse(x.a_date)}
+  end
+
   def self.all
     sql = "SELECT * FROM transactions"
     transactions = SqlRunner.run(sql)
@@ -54,11 +74,6 @@ class Transaction
   def self.map_items(data)
     result = data.map {|transaction| Transaction.new(transaction)}
     return result
-  end
-
-  def self.convert_to_date
-    transactions = self.all
-    return transactions.each {|x| x.a_date = Date.parse(x.a_date)}
   end
 
   def self.sort_by_year_month
@@ -89,7 +104,7 @@ class Transaction
 
 
   def self.months
-    transactions = Transaction.sort_by_year_month
+    transactions = Transaction.convert_to_date
     months = Date::MONTHNAMES
     return updated = transactions.each do |key, values|
       key[0] = months[key[0]]
