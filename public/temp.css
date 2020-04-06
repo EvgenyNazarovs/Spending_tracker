@@ -1,0 +1,115 @@
+.container {
+	display: grid;
+	grid-gap: 3px;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 250px 250px;
+}
+
+.container > div {
+	display: flex;
+	vertical-align: middle;
+  font-size: 2em;
+	justify-content: center;
+	align-items: center;
+	color: #dee3e2;
+	flex-direction: column;
+
+
+
+	/* display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2em;
+	color: #dee3e2; */
+}
+
+a {
+	display: inline-block;
+	text-decoration: none;
+	color: #dee3e2;
+	font-size: 0.75em;
+}
+
+a:active {
+	color: #dee3e2;
+}
+
+a:hover {
+	color: grey;
+}
+
+
+html, body {
+	background-color: #116979;
+	margin: 10px;
+}
+
+ul {
+	list-style-type:none;
+}
+
+.container > div:nth-child(1n) {
+	background-color: #116979;
+}
+
+.container > div:nth-child(3n) {
+	background-color: #de7119;
+}
+
+.container > div:nth-child(2n) {
+	background-color: #18b0b0;
+}
+
+.container > div:nth-child(4n) {
+	background-color: #116979;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* .wrapper {
+	margin: 15px;
+	background-color: #8877AA
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	flex-basis: 100%;
+	flex: 1;
+}
+
+.transactions {
+	background-color: #3F88C5;
+	height: 100px;
+}
+
+.merchants {
+	background-color: #87A7AA;
+	height: 100px;
+}
+
+.tags {
+	background-color: #E5A385;
+	height: 100px;
+}
+
+.stats {
+	background-color: #44BBA4;
+	height: 100px; */
+}

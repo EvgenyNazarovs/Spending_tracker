@@ -101,5 +101,13 @@ class Transaction
     return string.chop
   end
 
+  def self.find_by_id(id)
+    sql = "SELECT * FROM transactions
+           WHERE id = $1"
+    values = [id]
+    result = SqlRunner.run(sql, values).first
+    return Transaction.new(result)
+  end
+
 
 end

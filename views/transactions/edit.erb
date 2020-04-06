@@ -1,0 +1,21 @@
+<h4>Edit Transaction: </h4>
+
+<form action="/transactions/success" method="POST">
+  <input type="hidden" name="id"
+  value="<%=@transaction.id%>">
+
+  <p><input type="number" placeholder="<%=@transaction.amount%>" name="amount" required></p>
+
+  <p><input type="date" name="a_date" placeholder="<%=@transaction.a_date%>" required></p>
+
+  <p><label>Pick a merchant:</label>
+    <select name="merchant_id"
+      <% for merchant in @merchants %>
+        <option value="<%= merchant.id %>">
+          <%= merchant.name %></option>
+        <%end%>
+      </select>
+  </p>
+
+  <input type="submit" values="Change Transaction">
+  </form>

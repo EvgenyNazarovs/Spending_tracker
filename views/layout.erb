@@ -8,29 +8,16 @@
   <title>Spending Tracker</title>
 </head>
 <body>
-  <main class="flex flex--row">
-  <nav>
-    <ul>
-      <li>
-        <a href="/user">My Stats</a>
-      </li>
-      <li><a href="/merchants">Mechants</a></li>
-      <li><a href="/transactions">My transactions</a></li>
-    </ul>
-  </nav>
-
-  <section id="content">
-
-
-
-
-
-
-
-
-
-
-
+  <header>
+    <img class="logo" src="#" alt="logo">
+    <nav>
+      <ul class="nav__links">
+        <li><a href="/transactions/view">TRANSACTIONS</a></li>
+        <li><a href="/merchants/view">MERCHANTS</a></li>
+        <li><a href="/stats/view">MONTHLY STATS</a></li>
+        </ul>
+        </nav>
+        </header>
 
     <%= yield %>
   </section>

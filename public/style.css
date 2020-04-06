@@ -1,40 +1,96 @@
-.container {
-	height: 100%;
-	display: grid;
-	grid-gap: 3px;
-	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: 250px 250px;
-	color: #dee3e2;
-	font-size: 2em;
-	justify-content: center;
+@import url(@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #F2B054;
+  color: #444644
 }
 
-html, body {
-	background-color: #dee3e2;
-	margin: 0px;
-	box-sizing: border-box;
-	padding: 10px;
+li, a, button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #F9FFF9;
+  text-decoration: none;
 }
 
-
-div {
-	display: flex;
-  justify-content: center;
+header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding: 30px 10%;
 }
 
-.transactions {
-	background-color: #3F88C5;
+.logo {
+  cursor: pointer;
 }
 
-.merchants {
-	background-color: #87A7AA;
+.nav__links {
+  list_style: none;
 }
 
-.tags {
-	background-color: #E5A385;
+.nav__links li {
+  display: inline-block;
+  padding: 0px 20px;
 }
 
-.stats {
-	background-color: #44BBA4;
+.nav__links li a:hover {
+  color: #E3E8E3;
+}
+
+button {
+  padding: 9px 25px;
+  background-color: rgba(0,136,169,1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+button:hover {
+  background-color: rgba(0,136,169,0.8);
+}
+
+ul#horizontal-list li {
+		display: inline;
+    margin: 10px;
+  }
+
+.transactions-options {
+  display: inline;
+}
+
+.transactions-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 1.1em;
+  min-width: 400px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+
+.transactions-table thead tr {
+  background-color: blue;
+  color: white;
+  text-align: left;
+  font-weight: bold;
+}
+
+.transactions-table th,
+.transactions-table td {
+  padding: 12px 15px;
+}
+
+.transactions-table tbody tr {
+  border-bottom: 1px solid gray;
+}
+
+.transactions-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.transactions-table tbody tr:last-of-type {
+  border-bottom: 2px solid grey;
 }

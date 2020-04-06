@@ -7,12 +7,6 @@ require_relative('../models/user.rb')
 require_relative('../models/tag.rb')
 also_reload('../models/*')
 
-# INDEX
-
-get '/transactions' do
-  erb(:"transactions/index")
-end
-
 # TRANSACTION NEW
 
 get '/transactions/add' do
@@ -23,7 +17,7 @@ end
 post '/transactions/added' do
   transaction = Transaction.new(params)
   transaction.save
-  erb(:"transactions/added")
+  redirect to("/transactions/view")
 end
 
 # VIEW TRANSACTIONS
@@ -31,4 +25,16 @@ end
 get '/transactions/view' do
   @transactions = Transaction.months
   erb(:"transactions/view")
+end
+
+post '/transactions/success' do
+  transaction = Transaction.new(params)
+  transaction.update
+  redirect to("/transactions/view")
+end
+
+get '/transactions/:id/edit' do
+  @transaction = Transaction.find_by_id(params[:id])
+  @merchants = Merchant.all
+  erb(:"transactions/edit")
 end

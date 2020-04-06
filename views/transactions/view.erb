@@ -1,15 +1,34 @@
-<h2>View Transactions by Month:</h2>
+<ul id="horizontal-list">
+  <li><a href="/merchants/view">View by Merchant</a></li>
+  <li><a href="#">View by Tag</a></li>
+  <li><a href="/transactions/add">Add a Transaction</a></li>
+<h3>TRANSACTIONS BY MONTH:</h3>
 
-  <p><% @transactions.each do |key, values| %></p>
-    <h4><%= key[0] %>, <%= key[1] %></h4>
-      <br>
+<table class="transactions-table"
+  <thead>
+    <tr>
+      <th>AMOUNT</th>
+      <th>DATE</th>
+      <th>MERCHANT</th>
+      <th>TAG</th>
+      <th>MONTH</th>
+      </tr>
+      <thead>
+        <tbody>
+<% @transactions.each do |key, values| %>
+    <!-- <h4><%= key[0] %>, <%= key[1] %></h4> -->
       <%  values.each do |value| %>
+      <tr>
+        <td>£<%=value.amount%></td>
+      <td><%=value.a_date%></td>
+      <td><%=value.merchant.name%></td>
+      <td><%=value.show_tags_in_string%></td>
+      <td><%= key[0] %>, <%= key[1] %></td>
+      <td><a href="/transactions/<%=value.id%>/delete">Delete</a></td>
+      <td><a href="/transactions/<%=value.id%>/edit">Edit</a></td>
+      </tr>
 
-
-  <p>Amount: £<%=value.amount%></p>
-  <p>Date: <%=value.a_date%></p>
-  <p>Merchant: <%=value.merchant.name%></p>
-  <p>Tags: <%=value.show_tags_in_string%></p>
-  <hr>
   <% end %>
   <% end %>
+  </tbody>
+  </table>
