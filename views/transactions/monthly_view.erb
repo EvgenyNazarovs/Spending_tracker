@@ -1,0 +1,17 @@
+  <ul id="horizontal-list">
+  <li><a href="/merchants/view">View by Merchant</a></li>
+  <li><a href="#">View by Tag</a></li>
+  <li><a href="/transactions/new">Add a Transaction</a></li>
+
+  <% if @transactions.empty? %>
+  <h3>We didn't find any transaction.</h3>
+    <% else %>
+<h3>ALL TRANSACTIONS FOR month</h3>
+
+<% for item in @transactions %>
+
+<p>Amount: <%=item.amount%>
+
+  <%end%>
+
+  <%end%>
