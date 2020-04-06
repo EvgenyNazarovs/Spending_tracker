@@ -39,10 +39,10 @@ class Transaction
     SqlRunner.run(sql)
   end
 
-  def delete
+  def self.delete(id)
     sql = "DELETE FROM transactions
            WHERE id = $1"
-    values = [@id]
+    values = [id]
     SqlRunner.run(sql, values)
   end
 
@@ -66,10 +66,27 @@ class Transaction
     return transactions.group_by {|x| [x.a_date.mon, x.a_date.year]}
   end
 
-  def self.sort_by_yearmonth(year, month)
+  def self.select_by_yearmonth(year, month)
     transactions = self.convert_to_date
     return transactions.select {|x, v| x.a_date.mon == month && x.a_date.year == year}
   end
+
+  def self.monthly_breakdown
+    transactions = self.sort_by_year_month
+    return transactions.each_pair {|key, value| key[value] = self.monthly_spent(key[1], key[0])}
+  end
+
+
+  def self.monthly_spent(year, month)
+    transactions = self.select_by_yearmonth(year, month)
+    return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
+  end
+
+
+
+
+
+
 
   def self.months
     transactions = Transaction.sort_by_year_month
@@ -109,5 +126,39 @@ class Transaction
     return Transaction.new(result)
   end
 
+  def self.find_last_30_days
+    sql = "SELECT * FROM transactions
+           WHERE a_date >= NOW() - interval '1 month'"
+    results = SqlRunner.run(sql, values)
+    return Transaction.map_items(results)
+  end
+
+  def self.total_spent
+    transactions = transactions()
+    return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
+  end
+
+  def total_monthly(transactions)
+    return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
+  end
+
+  # def self.total_spent_by_month(year, month)
+  #   new_has
+  #   transactions = self.sort_by_yearmonth(year, month)
+  #   amount = transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
+  #   return new_hash = {year, month => amount}
+  # end
+  #
+  # def self.monthyl_breakdown
+  #   self.sort_by_year_month
+  # end
+  #
+  # def self.monthly_breakdown
+  #   hash = self.months()
+  #   monthly_total = 0
+  #   hash.each do |key, value|
+  #     value.each do |trx|
+  #       monthly_total += trx.amount
+  # end
 
 end

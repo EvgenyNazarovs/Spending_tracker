@@ -1,6 +1,6 @@
 <h1>Add a New Transaction</h1>
 
-<form action="/transactions/added" method="POST"
+<form action="/transactions/add" method="POST"
 
 <p><input type="number" placeholder="Enter Amount" name="amount" required></p>
 
@@ -14,6 +14,23 @@
       <%end%>
     </select>
 </p>
+
+<p><label>Tag one:</label>
+  <input type="text" list="tags" name ="tags[type1]">
+<datalist id="tags">
+  <% for tag in @tags %>
+  <option value="<%=tag.type%>"><%=tag.type%></option>
+  <% end %>
+  </datalist>
+
+  <p><label>Tag Two:</label>
+    <input type="text" list="tags" name ="tags[type2]">
+  <datalist id="tags">
+    <% for tag in @tags %>
+    <option value="<%=tag.type%>"><%=tag.type%></option>
+    <% end %>
+    </datalist>
+
 
 <input type="submit" values="Add Transaction">
 </form>
