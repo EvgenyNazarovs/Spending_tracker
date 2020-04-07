@@ -38,6 +38,13 @@ class Tag
     SqlRunner.run(sql)
   end
 
+  # def self.find_by_type[type]
+  #   sql = "SELECT * FROM tags
+  #          WHERE type = $1"
+  #   values = [type]
+  #   SqlRunner
+  # end
+
   def self.unique
     sql = "SELECT DISTINCT (type)
            FROM tags
@@ -45,5 +52,72 @@ class Tag
     results = SqlRunner.run(sql)
     return results.map{|tag| Tag.new(tag)}
   end
+
+  def self.transactions_by_type(type)
+    sql = "SELECT * FROM transactions
+           INNER JOIN tags
+           ON transactions.id = tags.transaction_id
+           WHERE tags.type = $1"
+    values = [type]
+    results = SqlRunner.run(sql, values)
+    return Transaction.map_items(results)
+  end
+
+  def spent_per_tag
+    sql = "SELECT sum(amount)
+           AS total
+           FROM transactions
+           INNER JOIN tags
+           ON transactions.id = tags.transaction_id
+           WHERE tags.type = $1"
+    values = [@type]
+    result = SqlRunner.run(sql,values)[0]['total'].to_i
+    return nil if result == nil
+    return result
+  end
+
+  def spent_per_tag_last_30_days
+    sql = "SELECT sum(amount)
+           AS total
+           FROM transactions
+           INNER JOIN tags
+           ON transactions.id = tags.transaction_id
+           WHERE tags.type = $1
+           AND transactions.a_date >= NOW() - interval '1 month'"
+    values = [@type]
+    result = SqlRunner.run(sql, values)[0]['total'].to_i
+    return result
+  end
+
+  # takes unique tag types and calculates total spent per tag
+  # returns a hash with tag types and amount spent, to be used in stats
+
+  def self.spent_per_tag_creates_hash
+    tags = self.unique
+    result = []
+    tags.each do |tag|
+      amount = tag.spent_per_tag
+      result << {
+        tag.type => amount
+      }
+    end
+    result
+  end
+
+  def self.spent_per_tag_creates_hash_last_30_days
+    tags = self.unique
+    result = []
+    tags.each do |tag|
+      amount = spent_per_tag_last_30_days
+      result << {
+        tag.type => amount
+      }
+    end
+    result
+  end
+
+
+
+
 
 end

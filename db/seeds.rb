@@ -17,10 +17,10 @@ merchant2.save
 merchant3.save
 
 transaction1 = Transaction.new({'amount' => 10.0,
-                                'a_date' => '2020-02-13',
+                                'a_date' => '2020-04-02',
                                 'merchant_id' => merchant2.id})
 transaction2 = Transaction.new({'amount' => 20.0,
-                               'a_date' => '2020-01-01',
+                               'a_date' => '2020-04-01',
                                'merchant_id' => merchant2.id})
 transaction3 = Transaction.new({'amount' => 35.0,
                                'a_date' => '2020-02-13',
@@ -32,7 +32,7 @@ transaction5 = Transaction.new({'amount' => 7.0,
                                'a_date' => '2020-03-13',
                                'merchant_id' => merchant3.id})
 transaction6 = Transaction.new({'amount' => 200.0,
-                               'a_date' => '2020-02-13',
+                               'a_date' => '2020-04-13',
                                'merchant_id' => merchant1.id})
 
 transaction1.save

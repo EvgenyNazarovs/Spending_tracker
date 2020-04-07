@@ -45,6 +45,14 @@ post '/transactions/monthly_view' do
   erb(:"transactions/monthly_view")
 end
 
+# view stats
+
+get '/transactions/stats' do
+  @this_month = Transaction.total_spent_this_month
+  @last_month = Transaction.total_spent_last_month
+  erb(:"transactions/stats")
+end
+
 get '/transactions/:id/delete' do
   Transaction.delete(params[:id])
   redirect to("/transactions/view")

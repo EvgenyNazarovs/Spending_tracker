@@ -1,0 +1,21 @@
+<h1>STATS PER TAGS</h1>
+
+<table class="stats-table"
+  <thead>
+    <tr>
+      <th>TAG</th>
+      <th>AMOUNT SPENT IN LAST 30 DAYS</th>
+      <th>AMOUNT SPENT SINCE BEGINNING</th>
+      </tr>
+      <thead>
+        <tbody>
+          <% @tags.each do |tag| %>
+          <tr>
+            <td><%=tag.type%></td>
+            <td><%=tag.spent_per_tag_last_30_days()%></td>
+            <td><%=tag.spent_per_tag%></td>
+            <td><a href="/tags/<%=tag.type%>/transactions">See all tagged transactions</a>
+            </tr>
+            <%end%>
+  </tbody>
+  </table>
