@@ -18,7 +18,7 @@ post '/tags/:id/delete' do
 end
 
 get '/tags/:id/transactions' do
-  
+  @type = params[:id]
   @transactions = Tag.transactions_by_type(params[:id])
   erb(:"tags/transactions")
 end

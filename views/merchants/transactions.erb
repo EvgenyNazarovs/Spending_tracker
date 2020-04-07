@@ -1,8 +1,38 @@
-<h4>Transactions for <%=@merchant.name%></h4>
+<h3>Transactions for <%=@merchant.name%></h3>
 
+<% if @transactions.empty? %>
+
+<h2>No Transactions Found For This Merchant</h2>
+
+<% else %>
+
+<table class="transactions-table"
+  <thead>
+    <tr>
+      <th>AMOUNT</th>
+      <th>DATE</th>
+      <th>MERCHANT</th>
+      <th>TAG</th>
+      <th>DELETE</th>
+      <th>EDIT</th>
+      </tr>
+      <thead>
+        <tbody>
 <% @transactions.each do |trx| %>
 
-<p>Amount: <%= trx.amount %></p>
-<p>Date: <%=trx.a_date%></p>
-<hr>
-<%end%>
+      <tr>
+        <td>£<%=trx.amount%></td>
+      <td><%=trx.a_date%></td>
+      <td><%=trx.merchant.name%></td>
+      <td><%=trx.show_tags_in_string%></td>
+      <td><a href="/transactions/<%=trx.id%>/delete">Delete</a></td>
+      <td><a href="/transactions/<%=trx.id%>/edit">Edit</a></td>
+      </tr>
+
+  <% end %>
+
+  </tbody>
+  </table>
+  <%end%>
+
+  <a href="/merchants/view">Back to All Merchants</a>

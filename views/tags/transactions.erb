@@ -1,11 +1,23 @@
+<h3>All Transactions Tagged As <%=@type.capitalize%></h3>
 
+
+<table class="transactions-table">
+  <thead>
+    <tr>
+      <th>AMOUNT</th>
+      <th>DATE</th>
+      <th>MERCHANT</th>
+      </tr>
+      </thead>
+      <tbody>
 
 <% for transaction in @transactions %>
 
-<p>Amount: <%=transaction.amount%></p>
-<p>Date: <%=transaction.a_date%></p>
-<p><
-<p><input type="hidden" name="transaction_id" value="<%=transaction.id%>">
-  <input type="hidden" name="type" value="<%=@type%>"><label>.
-<hr>
+<tr>
+  <td>£<%=transaction.amount%></td>
+  <td><%=transaction.a_date%></td>
+  <td><%=transaction.merchant.name%></td>
+</tr>
 <%end%>
+</tbody>
+</table>

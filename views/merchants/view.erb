@@ -1,12 +1,24 @@
-<h2>View All Merchants:</h2>
+<h3>VIEW MERCHANTS</h3>
 
-  <p><% @merchants.each do |merchant| %></p>
+<a href="/merchants/add">Add a Merchant</a>
 
-  <p>Merchant: <%=merchant.name%></p>
-  <p><a href="/merchants/<%=merchant.id%>">See transactions</a>
-    <a href="/merchants/<%=merchant.id%>/edit">Edit this merchant</a>
-  </p>
-  <hr>
-  <%end%>
+  <table class="transactions-table"
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>TRANSACTIONS</th>
+        <th>EDIT</th>
+        </tr>
+        <thead>
+          <tbody>
+<% @merchants.each do |merchant| %>
 
-  <p><a href="/merchants/add">Add a Merchant</a></p>
+        <tr>
+          <td><%=merchant.name%></td>
+        <td><a href="/merchants/<%=merchant.id%>">See All</a></td>
+        <td><a href="/merchants/<%=merchant.id%>/edit">Edit Merchant</a></td>
+          </tr>
+    <% end %>
+
+    </tbody>
+    </table>

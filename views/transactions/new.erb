@@ -1,21 +1,21 @@
-<h1>Add a New Transaction</h1>
+<h1>ADD A NEW TRANSACTION</h1>
 
-<form action="/transactions/add" method="POST"
+<form action="/transactions/add" method="POST">
 
-<p><input type="number" placeholder="Enter Amount" name="amount" required></p>
+<label>Amount: <input type="number" placeholder="Enter Amount" name="amount" required></label>
 
-<p><input type="date" name="a_date" required></p>
+<label>Date: <input type="date" name="a_date" required></label>
 
-<p><label>Pick a merchant:</label>
-  <select name="merchant_id"
+<label>Pick a Merchant:</label>
+  <select name="merchant_id">
     <% for merchant in @merchants %>
       <option value="<%= merchant.id %>">
         <%= merchant.name %></option>
-      <%end%>
+              <%end%>
     </select>
-</p>
 
-<p><label>Tag one:</label>
+
+<p><label>Tag One:</label>
   <input type="text" list="tags" name ="tags[type1]">
 <datalist id="tags">
   <% for tag in @tags %>
@@ -23,7 +23,7 @@
   <% end %>
   </datalist>
 
-  <p><label>Tag Two:</label>
+  <label>Tag Two (Optional):</label>
     <input type="text" list="tags" name ="tags[type2]">
   <datalist id="tags">
     <% for tag in @tags %>
@@ -33,4 +33,4 @@
 
 
 <input type="submit" values="Add Transaction">
-</form>
+</form></p>

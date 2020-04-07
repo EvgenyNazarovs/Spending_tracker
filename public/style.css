@@ -5,7 +5,8 @@
   margin: 0;
   padding: 0;
   background-color: #F2B054;
-  color: #444644
+  color: #444644;
+  padding-left: 15px;
 }
 
 li, a, button {
@@ -93,4 +94,23 @@ ul#horizontal-list li {
 
 .transactions-table tbody tr:last-of-type {
   border-bottom: 2px solid grey;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+h3 {
+  margin-bottom: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+
+  padding: 10px 12px 10px 20px;
+
 }
