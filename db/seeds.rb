@@ -3,7 +3,6 @@ require_relative("../models/merchant.rb")
 require_relative("../models/transaction.rb")
 require("pry-byebug")
 
-
 Merchant.delete_all
 Transaction.delete_all
 Tag.delete_all
@@ -11,10 +10,12 @@ Tag.delete_all
 merchant1 = Merchant.new('name' => 'Tesco')
 merchant2 = Merchant.new('name' => 'Old Hairdressers')
 merchant3 = Merchant.new('name' => 'Waitrose')
+merchant4 = Merchant.new('name' => 'JD Gyms')
 
 merchant1.save
 merchant2.save
 merchant3.save
+merchant4.save
 
 transaction1 = Transaction.new({'amount' => 10.0,
                                 'a_date' => '2020-04-02',
@@ -33,7 +34,7 @@ transaction5 = Transaction.new({'amount' => 7.0,
                                'merchant_id' => merchant3.id})
 transaction6 = Transaction.new({'amount' => 200.0,
                                'a_date' => '2020-04-13',
-                               'merchant_id' => merchant1.id})
+                               'merchant_id' => merchant4.id})
 
 transaction1.save
 transaction2.save
@@ -47,7 +48,7 @@ tag2 = Tag.new({'type' => 'fun', 'transaction_id' => transaction2.id})
 tag3 = Tag.new({'type' => 'food', 'transaction_id' => transaction3.id})
 tag4 = Tag.new({'type' => 'fun', 'transaction_id' => transaction4.id})
 tag5 = Tag.new({'type' => 'social', 'transaction_id' => transaction5.id})
-tag6 = Tag.new({'type' => 'travel', 'transaction_id' => transaction6.id})
+tag6 = Tag.new({'type' => 'sports', 'transaction_id' => transaction6.id})
 tag7 = Tag.new({'type' => 'social', 'transaction_id' => transaction1.id})
 
 tag1.save
