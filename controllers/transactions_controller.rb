@@ -36,6 +36,9 @@ end
 post '/transactions/success' do
   transaction = Transaction.new(params)
   transaction.update
+  tag = Tag.new({'type' => params[:type],
+                 'transaction_id' => transaction.id})
+  tag.save
   redirect to("/transactions/view")
 end
 
@@ -61,5 +64,6 @@ end
 get '/transactions/:id/edit' do
   @transaction = Transaction.find_by_id(params[:id])
   @merchants = Merchant.all
+  @tags = Tag.unique
   erb(:"transactions/edit")
 end

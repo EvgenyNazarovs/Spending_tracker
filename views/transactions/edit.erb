@@ -16,5 +16,17 @@
         <%end%>
       </select>
 
+  <label>Add a New Tag:</label>
+        <input type="text" list="tags" name ="type">
+      <datalist id="tags">
+        <% for tag in @tags %>
+        <option value="<%=tag.type%>"><%=tag.type%></option>
+        <% end %>
+        </datalist>
+
+
+
   <input type="submit" values="Change Transaction">
   </form>
+
+  <a href="/transactions/view">Back to All Transactions</a>

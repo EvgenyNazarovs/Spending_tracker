@@ -70,11 +70,6 @@ class Transaction
     SqlRunner.run(sql, values)
   end
 
-  def self.map_items(data)
-    result = data.map {|transaction| Transaction.new(transaction)}
-    return result
-  end
-
   def self.monthly_spent(yyyy_mm)
     sql = "SELECT sum(amount)
            AS total
@@ -93,8 +88,6 @@ class Transaction
     result = SqlRunner.run(sql)[0]['total'].to_i
     return result
   end
-
-  # calculates total spent over given number of months
 
 def self.total_spent_last_month
   sql = "SELECT sum(amount)
@@ -143,31 +136,9 @@ end
     return Transaction.map_items(results)
   end
 
-  def self.total_spent
-    transactions = transactions()
-    return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
+  def self.map_items(data)
+    result = data.map {|transaction| Transaction.new(transaction)}
+    return result
   end
-
-  def total_monthly(transactions)
-    return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
-  end
-
-  def untag(type)
-    sql = "DELETE FROM tags
-           WHERE transaction_id = $1
-           AND type = $2"
-    values = [@id, type]
-    SqlRunner.run(sql, values)
-  end
-
-  def find_tag_id(type)
-    sql = "SELECT * FROM tags
-           WHERE transaction_id = $1
-           AND type = $2"
-    values = [@id, type]
-    result = SqlRunner.run(sql, values).first
-    return Tag.new(result)['id']
-  end
-
 
 end

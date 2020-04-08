@@ -14,7 +14,7 @@ end
 get '/tags/:id/delete' do
   @type = params[:id].split('-')[1].to_s
   @transaction_id = params[:id].split('-')[0].to_i
-  Tag.delete_by_trx_id_and_type(@transaction_id, @type)
+  Tag.delete_by_transaction_id_and_type(@transaction_id, @type)
   erb(:"tags/untag")
 end
 

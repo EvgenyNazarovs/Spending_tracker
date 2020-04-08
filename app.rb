@@ -5,5 +5,5 @@ require_relative('controllers/merchants_controller')
 require_relative('controllers/tags_controller')
 
 get '/' do
-  erb(:index)
+  redirect to('/transactions/view')
 end

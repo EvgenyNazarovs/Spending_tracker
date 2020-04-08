@@ -38,13 +38,6 @@ class Tag
     SqlRunner.run(sql)
   end
 
-  # def self.find_by_type[type]
-  #   sql = "SELECT * FROM tags
-  #          WHERE type = $1"
-  #   values = [type]
-  #   SqlRunner
-  # end
-
   def self.unique
     sql = "SELECT DISTINCT (type)
            FROM tags
@@ -91,54 +84,12 @@ class Tag
     return result
   end
 
-  # takes unique tag types and calculates total spent per tag
-  # returns a hash with tag types and amount spent, to be used in stats
-
-  def self.spent_per_tag_creates_hash
-    tags = self.unique
-    result = []
-    tags.each do |tag|
-      amount = tag.spent_per_tag
-      result << {
-        tag.type => amount
-      }
-    end
-    result
-  end
-
-  def self.spent_per_tag_creates_hash_last_30_days
-    tags = self.unique
-    result = []
-    tags.each do |tag|
-      amount = spent_per_tag_last_30_days
-      result << {
-        tag.type => amount
-      }
-    end
-    result
-  end
-  #
-  # def self.find_id_by_transaction(type, transaction)
-
-  def self.delete_by_trx_id_and_type(id, type)
+  def self.delete_by_transaction_id_and_type(id, type)
     sql = "DELETE FROM tags
            WHERE transaction_id = $1
            AND type = $2"
     values = [id, type]
     SqlRunner.run(sql, values)
   end
-
-  def self.find_by_type_and_id(id, type)
-    sql = "SELECT * FROM tags
-           WHERE transaction_id = $1
-          AND type = $2"
-    values = [id, type]
-    result = SqlRunner.run(sql, values).first
-    return Tag.new(result)
-  end
-
-
-
-
 
 end
