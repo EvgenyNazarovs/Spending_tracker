@@ -3,16 +3,17 @@ require('sinatra/contrib/all') if development?
 require('pry')
 require_relative('../models/transaction.rb')
 require_relative('../models/merchant.rb')
-require_relative('../models/user.rb')
 require_relative('../models/tag.rb')
 also_reload('../models/*')
 
-# VIEW MERCHANTS
+# view
 
 get '/merchants/view' do
   @merchants = Merchant.all
   erb(:'/merchants/view')
 end
+
+# add
 
 get '/merchants/add' do
   erb(:'merchants/add')

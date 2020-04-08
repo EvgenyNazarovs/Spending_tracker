@@ -3,7 +3,6 @@ require('sinatra/contrib/all') if development?
 require('pry-byebug')
 require_relative('../models/transaction.rb')
 require_relative('../models/merchant.rb')
-require_relative('../models/user.rb')
 require_relative('../models/tag.rb')
 also_reload('../models/*')
 
@@ -42,6 +41,7 @@ end
 
 post '/transactions/monthly_view' do
   @transactions = Transaction.find_by_month(params[:month])
+  @total_spent = Transaction.monthly_spent(params[:month])
   erb(:"transactions/monthly_view")
 end
 

@@ -19,7 +19,7 @@ li, a, button {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 30px 10%;
 }
@@ -73,7 +73,6 @@ ul#horizontal-list li {
 }
 
 .transactions-table thead tr {
-  background-color: blue;
   color: white;
   text-align: left;
   font-weight: bold;
@@ -103,6 +102,7 @@ button, input, select, textarea {
 
 h3 {
   margin-bottom: 20px;
+  padding-left: 30px;
 }
 
 h1 {
@@ -112,5 +112,9 @@ h1 {
 form {
 
   padding: 10px 12px 10px 20px;
+}
 
+.transactions-nav {
+  color: #F9FFF9;
+  display: inline;
 }

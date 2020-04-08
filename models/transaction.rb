@@ -28,12 +28,16 @@ class Transaction
     SqlRunner.run(sql, values)
   end
 
+  # returns all transaction from recent to old
+
   def self.sorted_by_month
     sql = "SELECT * FROM transactions
            ORDER BY a_date DESC"
     results = SqlRunner.run(sql)
     return Transaction.map_items(results)
   end
+
+  # finds transactions for specific month
 
   def self.find_by_month(yyyy_mm)
     sql = "SELECT * FROM transactions
@@ -66,36 +70,16 @@ class Transaction
     SqlRunner.run(sql, values)
   end
 
-  # def show_date
-  #   date = a_date()
-  #   Date.strftime('%B, ')
-  # end
-
   def self.map_items(data)
     result = data.map {|transaction| Transaction.new(transaction)}
     return result
-  end
-
-  def self.sort_by_year_month
-    transactions = self.convert_to_date
-    return transactions.group_by {|x| [x.a_date.mon, x.a_date.year]}
-  end
-
-  def self.select_by_yearmonth(year, month)
-    transactions = self.convert_to_date
-    return transactions.select {|x, v| x.a_date.mon == month && x.a_date.year == year}
-  end
-
-  def self.monthly_breakdown
-    transactions = self.sort_by_year_month
-    return transactions.each_pair {|key, value| key[value] = self.monthly_spent(key[1], key[0])}
   end
 
   def self.monthly_spent(yyyy_mm)
     sql = "SELECT sum(amount)
            AS total
            FROM transactions
-           WHERE a_date = $1"
+           WHERE to_char(a_date, 'YYYY-MM') = $1"
     values = [yyyy_mm]
     return total = SqlRunner.run(sql, values)[0]['total'].to_i
   end
@@ -110,6 +94,7 @@ class Transaction
     return result
   end
 
+  # calculates total spent over given number of months
 
 def self.total_spent_last_month
   sql = "SELECT sum(amount)
@@ -120,14 +105,6 @@ def self.total_spent_last_month
   result = SqlRunner.run(sql)[0]['total'].to_i
   return result
 end
-
-  def self.months
-    transactions = Transaction.convert_to_date
-    months = Date::MONTHNAMES
-    return updated = transactions.each do |key, values|
-      key[0] = months[key[0]]
-    end
-  end
 
   def merchant
     sql = "SELECT * FROM merchants
@@ -166,9 +143,6 @@ end
     return Transaction.map_items(results)
   end
 
-
-
-
   def self.total_spent
     transactions = transactions()
     return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
@@ -177,25 +151,6 @@ end
   def total_monthly(transactions)
     return transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
   end
-
-  # def self.total_spent_by_month(year, month)
-  #   new_has
-  #   transactions = self.sort_by_yearmonth(year, month)
-  #   amount = transactions.reduce(0) {|sum, transaction| sum + transaction.amount.to_i}
-  #   return new_hash = {year, month => amount}
-  # end
-  #
-  # def self.monthyl_breakdown
-  #   self.sort_by_year_month
-  # end
-  #
-  # def self.monthly_breakdown
-  #   hash = self.months()
-  #   monthly_total = 0
-  #   hash.each do |key, value|
-  #     value.each do |trx|
-  #       monthly_total += trx.amount
-  # end
 
   def untag(type)
     sql = "DELETE FROM tags
@@ -206,10 +161,12 @@ end
   end
 
   def find_tag_id(type)
-    sql = "SELECT FROM tags
+    sql = "SELECT * FROM tags
            WHERE transaction_id = $1
            AND type = $2"
     values = [@id, type]
+    result = SqlRunner.run(sql, values).first
+    return Tag.new(result)['id']
   end
 
 

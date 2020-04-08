@@ -54,7 +54,9 @@ class Tag
   end
 
   def self.transactions_by_type(type)
-    sql = "SELECT * FROM transactions
+    sql = "SELECT transactions.id, transactions.amount,
+           transactions.a_date, transactions.merchant_id
+           FROM transactions
            INNER JOIN tags
            ON transactions.id = tags.transaction_id
            WHERE tags.type = $1"
@@ -114,6 +116,25 @@ class Tag
       }
     end
     result
+  end
+  #
+  # def self.find_id_by_transaction(type, transaction)
+
+  def self.delete_by_trx_id_and_type(id, type)
+    sql = "DELETE FROM tags
+           WHERE transaction_id = $1
+           AND type = $2"
+    values = [id, type]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.find_by_type_and_id(id, type)
+    sql = "SELECT * FROM tags
+           WHERE transaction_id = $1
+          AND type = $2"
+    values = [id, type]
+    result = SqlRunner.run(sql, values).first
+    return Tag.new(result)
   end
 
 

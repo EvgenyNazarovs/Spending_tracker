@@ -1,12 +1,13 @@
-<ul id="horizontal-list">
-  <li><a href="/merchants/view">View by Merchant</a></li>
-  <li><a href="#">View by Tag</a></li>
-  <li><a href="/transactions/new">Add a Transaction</a></li>
-<h3>ALL TRANSACTIONS:</h3>
+<h3>ALL TRANSACTIONS</h3>
+
+<div class="transactions-nav">
+<a href="/transactions/new">ADD A TRANSACTION</a>
+<a href="/transactions/stats">SPENDING</a>
+
 <form action="/transactions/monthly_view" method="POST">
-  <label>
-    VIEW TRANSACTIONS BY MONTH: </label>
-    <input type="month" name="month"><input type="submit" values="Find transactions!">
+<label class="transactions">VIEW TRANSACTIONS BY MONTH: </label>
+<input type="month" name="month"><input type="submit" values="Find transactions!">
+</div>
 
 <table class="transactions-table"
   <thead>
@@ -15,7 +16,6 @@
       <th>DATE</th>
       <th>MERCHANT</th>
       <th>TAG</th>
-      <th>MONTH</th>
       <th>DELETE</th>
       <th>EDIT</th>
       </tr>
@@ -28,9 +28,8 @@
       <td><%=value.a_date%></td>
       <td><%=value.merchant.name%></td>
       <td><%=value.show_tags_in_string%></td>
-      <td><%= value.a_date%></td>
-      <td><a href="/transactions/<%=value.id%>/delete">Delete</a></td>
-      <td><a href="/transactions/<%=value.id%>/edit">Edit</a></td>
+      <td><a href="/transactions/<%=value.id%>/delete"><img src="/images/delete.png" alt="delete_sign" height="20px" width="35px"></a></td>
+      <td><a href="/transactions/<%=value.id%>/edit"><img src="/images/mdi_create.png" alt="edit_sign" height="20px" width="35px"></a></td>
       </tr>
 
   <% end %>

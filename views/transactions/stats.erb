@@ -1,6 +1,6 @@
-<h1>STATS</h1>
+<h3>LATEST OVERALL SPENDING</h3>
 
-<table class="stats-table"
+<table class="transactions-table"
   <thead>
     <tr>
       <th>DESCRIPTION</th>
@@ -9,18 +9,19 @@
       <thead>
         <tbody>
           <tr>
-            <td>Remaining budget this month</td>
-            <td></td>
-            <td>Change budget</td>
-            </tr>
-          <tr>
-        <td>Total spent this month:</td>
-        <td><%=@this_month%></td>
+        <td>Spending This Month</td>
+        <td>£<%=@this_month%></td>
          </tr>
         <tr>
-        <td>Total spent last month:</td>
-        <td><%=@last_month%></td>
+        <td>Spending Last Month</td>
+        <td>£<%=@last_month%></td>
           </tr>
+          <tr>
+            <td>Spending Last 90 Days</td>
+            <td><%=@last_90_days%></td>
+            </tr>
 
   </tbody>
   </table>
+
+  <a href="/transactions/view">Back to All Transactions</a>

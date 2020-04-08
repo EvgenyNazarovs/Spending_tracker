@@ -1,23 +1,35 @@
+<% if @transactions.nil? %>
+
+<h3>No Transactions Found</h3>
+
+<% else %>
+
 <h3>All Transactions Tagged As <%=@type.capitalize%></h3>
 
 
-<table class="transactions-table">
+<table class="transactions-table"
   <thead>
     <tr>
       <th>AMOUNT</th>
       <th>DATE</th>
       <th>MERCHANT</th>
+      <th>TAGS</th>
+      <th>UNTAG</th>
       </tr>
       </thead>
       <tbody>
 
-<% for transaction in @transactions %>
+<% @transactions.each do |transaction| %>
 
 <tr>
   <td>£<%=transaction.amount%></td>
   <td><%=transaction.a_date%></td>
   <td><%=transaction.merchant.name%></td>
+  <td><%=transaction.show_tags_in_string%></td>
+  <td><a href="/tags/<%=transaction.id%>-<%=@type%>/delete">Untag</a></td>
 </tr>
 <%end%>
 </tbody>
 </table>
+
+<%end%>

@@ -1,12 +1,9 @@
-  <ul id="horizontal-list">
-  <li><a href="/merchants/view">View by Merchant</a></li>
-  <li><a href="#">View by Tag</a></li>
-  <li><a href="/transactions/new">Add a Transaction</a></li>
-
   <% if @transactions.empty? %>
   <h3>No transaction exist for this month.</h3>
     <% else %>
-<h3>Displaying transactions:</h3>
+<h3>DISPLAYING FOUND TRANSACTIONS</h3>
+
+<p>TOTAL SPENDING FOR THE MONTH: £<%=@total_spent%></p>
 
 <table class="transactions-table"
   <thead>
@@ -18,7 +15,7 @@
       <th>DELETE</th>
       <th>EDIT</th>
       </tr>
-      <thead>
+      </thead>
         <tbody>
 
 
@@ -39,4 +36,4 @@
   </table>
   <%end%>
 
-  <a href="/transactions/view">Go back</a>
+  <a href="/transactions/view">Back to All Transactions</a>
