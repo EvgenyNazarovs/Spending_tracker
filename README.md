@@ -1,3 +1,7 @@
+<img src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-1.png" width="290"><img
+src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-2.png" width="290"><img 
+src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-3.png" width="290">
+
 # Spending_tracker
 
 An easy-to-use app that allows users to enter transactions, add tags and merchants, and break down their spending by month, tag, or merchant.
