@@ -1,6 +1,6 @@
-<img src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-1.png" width="290"><img
-src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-2.png" width="290"><img 
-src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-3.png" width="290">
+<img src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-1.png" width="300"><img
+src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-2.png" width="300"><img 
+src="https://github.com/EvgenyNazarovs/My-files/blob/master/spending-tracker-screenshots/spending-tracker-3.png" width="300">
 
 # Spending_tracker
 
